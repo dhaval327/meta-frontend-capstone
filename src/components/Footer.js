@@ -3,7 +3,6 @@ import logo_green_lg from "../images/logo_green_lg.png"
 function Footer () {
     return (
         <footer>
-            <p>Footer</p>
             <img src={logo_green_lg} alt="Little Lemon logo"/>
             <div>
                 <p>Doormat Navigation</p>

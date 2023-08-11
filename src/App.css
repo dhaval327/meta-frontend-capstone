@@ -11,3 +11,28 @@ nav ul li {
   display: inline;
   padding: 2em;
 }
+
+header {
+  display: flex;
+}
+
+img {
+  max-width: 15em;
+  max-height: 15em;
+}
+
+section > section {
+  display: flex;
+}
+
+footer {
+  display: flex;
+}
+
+.section-title {
+  display: flex;
+}
+
+.about-section {
+  display: flex;
+}
