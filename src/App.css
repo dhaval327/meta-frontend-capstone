@@ -1,24 +1,24 @@
 h1 {
-  font-size: 64pt;
+  font-size: 6vmax;
   margin: 0em;
 }
 
 h2 {
-  font-size: 40pt;
+  font-size: 4vmax;
   margin: 0em;
 }
 
 h3 {
-  font-size: 18pt;
+  font-size: 1vmax;
 }
 
 p {
-  font-size: 18pt;
+  font-size: 1vmax;
   font-family: "Karla", serif;
 }
 
 a {
-  font-size: 18pt;
+  font-size: 1vmax;
   font-family: "Karla", serif;
 }
 
@@ -34,7 +34,7 @@ nav ul {
 
 nav ul li {
   display: inline;
-  padding: 2em;
+  padding: 1vw;
 }
 
 nav a {
@@ -73,13 +73,13 @@ footer a {
 }
 
 footer img {
-  width: 10em;
-  margin: 2em;
+  width: 10vw;
+  margin: 1vw;
 }
 
 section {
-  padding-left: 8em;
-  padding-right: 8em;
+  padding-left: 8vw;
+  padding-right: 8vw;
 }
 
 section img {
@@ -88,7 +88,7 @@ section img {
 
 .button {
   background-color: #F4CE14;
-  font-size: 16pt;
+  font-size: 1vmax;
   color: #333333;
   border-radius: 16px;
   text-decoration: none;
@@ -103,15 +103,15 @@ section img {
 
 .card-list {
   display: grid;
-  margin-left: 1em;
-  margin-right: 1em;
+  margin-left: 1vw;
+  margin-right: 1vw;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-content: center;
 }
 
 .card {
-  padding: 1em;
-  margin: 1em;
+  padding: 1vw;
+  margin: 1vw;
   background-color: #EDEFEE;
   border-radius: 16px;
   grid-area: "card";
@@ -139,8 +139,8 @@ section img {
   display: grid;
   background-color: #495E57;
   align-items: center;
-  padding-left: 8em;
-  padding-right: 8em;
+  padding-left: 8vw;
+  padding-right: 8vw;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
 }
 
@@ -158,7 +158,7 @@ section img {
 
 .banner img {
   max-width: 100%;
-  max-height: 25em;
+  max-height: 50vh;
   height: auto;
   margin: 1em;
   border-radius: 16px;
