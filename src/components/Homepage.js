@@ -7,14 +7,14 @@ import Footer from './Footer';
 
 function Homepage () {
     return (
-        <div>
+        <>
             <Navigation/>
             <CallToAction/>
             <Specials/>
             <CustomersSay/>
             <About/>
             <Footer/>
-        </div>
+        </>
     );
 }
 

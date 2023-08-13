@@ -13,7 +13,7 @@ function CallToAction () {
                     recipes served with a
                     twist.
                 </p>
-                <a href="/" className="button"><b>Reserve a Table</b></a>
+                <a href="/booking" className="button"><b>Reserve a Table</b></a>
             </article>
             <img src={restaurantFood} alt="Little Lemon Restaurant"/>
         </header>

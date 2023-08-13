@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import BookingForm from './components/BookingForm';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders choose date section', () => {
+  const availableTimes = ["12:00"]
+  render(<BookingForm availableTimes={availableTimes} />);
+  const chooseDateElement = screen.getByText(/Choose Date/i);
+  expect(chooseDateElement).toBeInTheDocument();
 });

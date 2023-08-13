@@ -91,6 +91,12 @@ section img {
   border-radius: 16px;
 }
 
+form {
+  display: grid;
+  max-width: 200px;
+  gap: 20px
+}
+
 .button {
   background-color: #F4CE14;
   font-size: 1vmax;
