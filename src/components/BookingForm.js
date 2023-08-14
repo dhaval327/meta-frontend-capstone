@@ -1,52 +1,69 @@
 import { useState } from "react";
 
 function BookingForm (props) {
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
-    const [numGuests, setNumGuests] = useState(1);
-    const [occasion, setOccasion] = useState("");
+    const [date, setDate] = useState({date: "", valid: true});
+    const [time, setTime] = useState({time: props.availableTimes[0], valid: true});
+    const [numGuests, setNumGuests] = useState({numGuests: 1, valid: true});
+    const [occasion, setOccasion] = useState({occasion: "birthday", valid: true});
 
     const clearForm = () => {
-        setDate("");
-        setTime("");
-        setNumGuests("");
-        setOccasion("")
+        setDate({date: "", valid: true});
+        setTime({time: "", valid: true});
+        setNumGuests({numGuests: 1, valid: true});
+        setOccasion({occasion: "", valid: true})
     }
+
+    const validateForm = () => {
+        setDate({...date, valid: date.date !== ""});
+        setTime({...time, valid: time.time !== ""});
+        setNumGuests({...numGuests, valid: numGuests.numGuests >= 1 && numGuests.numGuests <= 10});
+        setOccasion({...occasion, valid: occasion.occasion !== ""});
+
+        return date.date !== "" && time.time !== "" && (numGuests.numGuests >= 1 && numGuests.numGuests <= 10) && occasion.occasion !== "";
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        clearForm();
-        props.submitForm(
-            {
-                date: date,
-                time: time,
-                numGuests: numGuests,
-                occasion: occasion
-            }
-        );
+        if (validateForm()) {
+            clearForm();
+            props.submitForm(
+                {
+                    date: date.date,
+                    time: time.time,
+                    numGuests: numGuests.numGuests,
+                    occasion: occasion.occasion
+                }
+            );
+        }
     };
 
     const handleDateChange = (e) => {
-        setDate(e.target.value)
+        setDate({date: e.target.value, valid: e.target.value !== ""})
         props.dispatchTimes({ type: "TIME_CHANGE", date: e.target.value});
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="res-date">Choose date</label>
-            <input type="date" id="res-date" value={date} onChange={handleDateChange}/>
-            <label htmlFor="res-time">Choose time</label>
-            <select id="res-time" value={time} onChange={e => setTime(e.target.value)}>
-                {props.availableTimes.map(t => <option>{t}</option>)}
+            <h2>Reservation Form</h2>
+            <label htmlFor="res-date">Choose date<sup>*</sup></label>
+            <input type="date" id="res-date" value={date.date} onChange={handleDateChange}/>
+            {!date.valid ? <p className="form-error">Please Enter a Date</p>: null}
+            <label htmlFor="res-time">Choose time<sup>*</sup></label>
+            <select id="res-time" value={time.time} onChange={e => setTime({time: e.target.value, valid: e.target.value !== ""})}>
+                {props.availableTimes.map(t => <option key={t}>{t}</option>)}
             </select>
-            <label htmlFor="guests">Number of guests</label>
-            <input type="number" placeholder="1" min="1" max="10" id="guests" value={numGuests} onChange={e => setNumGuests(e.target.value)}/>
-            <label htmlFor="occasion">Occasion</label>
-            <select id="occasion" value={occasion} onChange={e => setOccasion(e.target.value)}>
-                <option>Birthday</option>
-                <option>Anniversary</option>
+            {!time.valid ? <p className="form-error">Please Enter a Valid Time</p>: null}
+            <label htmlFor="guests">Number of guests<sup>*</sup></label>
+            <input type="number" placeholder="1" min="1" max="10" id="guests" value={numGuests.numGuests}
+            onChange={e => setNumGuests({numGuests: e.target.value, valid: e.target.value >= 1 && e.target.value <= 10})}/>
+            {!numGuests.valid ? <p className="form-error">Please Enter a Number of Guests between 1 and 10</p> : null}
+            <label htmlFor="occasion">Occasion<sup>*</sup></label>
+            <select id="occasion" value={occasion.occasion} onChange={e => setOccasion({occasion: e.target.value, valid: e.target.value !== ""})}>
+                <option key="birthday">Birthday</option>
+                <option key="anniversary">Anniversary</option>
             </select>
-            <input type="submit" value="Make Your reservation"/>
+            {!occasion.valid ? <p className="form-error">Please Enter a Valid Occasion</p>: null}
+            <input aria-label="On Click" type="submit" value="Make Your Reservation"/>
         </form>
     );
 }
